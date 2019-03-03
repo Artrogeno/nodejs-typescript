@@ -5,6 +5,8 @@ import http from 'http'
 import cors from 'cors'
 import methodOverride from 'method-override'
 
+import { ConfigRouter } from './config/router'
+
 export class Server {
 	private static connectDB(): Promise<any> {
 		// return connection
@@ -14,9 +16,11 @@ export class Server {
 	}
 
 	private readonly express: express.Application
+	private readonly router: express.Router
 	private readonly server: http.Server
 
 	constructor() {
+		this.router = new ConfigRouter().router
 		this.express = express()
 		this.server = http.createServer(this.express)
 	}
@@ -61,10 +65,7 @@ export class Server {
 		this.express.get('/test', (req: express.Request, res: express.Response, next: express.NextFunction): void => {
 			res.status(200).json({test: 'server it\'s works!  <br/><br/> :)'});
 		});
-
-		// for (const route of Routes) {
-		// 	this.express.use(route.path, route.middleware, route.handler)
-		// }
+		this.express.use(this.router)
 		this.express.use((req: express.Request, res: express.Response, next: express.NextFunction): void => {
 			res.status(404)
 			res.json({ error: 'Not found' })
