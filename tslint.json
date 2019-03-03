@@ -1,0 +1,51 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "class-name": true,
+    "indent": [true, 2],
+    "quotemark": [
+      false,
+      "double"
+    ],
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "semicolon": [
+      false,
+      "always"
+    ],
+    "no-console": [false,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "no-shadowed-variable": [
+      false,
+      {
+        "class": true,
+        "enum": true,
+        "function": true,
+        "interface": false,
+        "namespace": true,
+        "typeAlias": false,
+        "typeParameter": false,
+        "temporalDeadZone": true
+      }
+    ],
+    "ordered-imports": [false, {
+      "import-sources-order": "any",
+      "named-imports-order": "case-insensitive"
+    }]
+  },
+  "rulesDirectory": []
+}
